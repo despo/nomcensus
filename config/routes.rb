@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'home/index'
+  resources :chats, path: ""
 
   root 'home#index'
-
-  resource :chat
 end

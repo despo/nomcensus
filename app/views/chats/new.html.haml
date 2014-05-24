@@ -1,0 +1,6 @@
+.content#chat
+  = simple_form_for @chat do |f|
+    = f.input :name, label: false, placeholder: "What is the chat about?"
+
+    = f.submit "Create"
+

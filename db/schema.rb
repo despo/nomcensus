@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 20140524005247) do
 
   create_table "chats", force: true do |t|
     t.string   "name"
+    t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
