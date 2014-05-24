@@ -1,0 +1,15 @@
+.container
+  .left-column
+    #place
+      %h1 Suggest new place
+
+      =simple_form_for [@chat, @place] do |f|
+        = f.input :name, label: false, placeholder: "place"
+        = f.input :address, label: false, placeholder: "address"
+        = f.submit "add", class: "btn"
+
+  .right-column
+    #prevelant-location
+      .panel
+        .location
+        #map

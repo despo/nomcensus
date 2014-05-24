@@ -14,6 +14,7 @@ gem 'haml-rails'
 gem 'haml'
 gem 'simple_form'
 gem 'font-awesome-rails'
+gem 'pickadate-rails'
 
 gem 'unicorn'
 

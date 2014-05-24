@@ -1,0 +1,15 @@
+#invitations
+  .container
+    .left-column
+      .chat
+        =link_to new_chat_path do
+          New invitation
+    .right-column
+      %h1 Invitations
+      %ul
+        - if @invitations.any?
+          - @invitations.each do |invitation|
+            %li{ selected: (!invitation.accepted ? "selected" : "rejected")}
+              =link_to invitation.chat do
+                = invitation.chat.name
+              %small #{invitation.chat.date.strftime("%a, %d/%m/%Y")} at #{invitation.chat.time.strftime("%H:%M")}

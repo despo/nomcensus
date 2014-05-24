@@ -1,0 +1,17 @@
+- chat.ordered_places.each do |place|
+  %li{ "data-chat-slug" => chat.slug,"data-place-slug" => place.id }
+    .details
+      %span.place
+        =place.name
+      %span.votes= votes_for(place)
+    %small= place.address
+- (chat.places - chat.ordered_places).each do |place|
+  %li{ "data-chat-slug" => @chat.slug,"data-place-slug" => place.id }
+    .details
+      %span.place
+        =place.name
+      %span.votes= votes_for(place)
+    %small= place.address
+- if logged_in?
+  %li.suggest
+    =link_to "suggest a place", new_chat_place_path(@chat)

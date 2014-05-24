@@ -11,13 +11,63 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140524005247) do
+ActiveRecord::Schema.define(version: 20140525042108) do
 
   create_table "chats", force: true do |t|
     t.string   "name"
     t.string   "slug"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "person_id"
+    t.date     "date"
+    t.datetime "time"
   end
+
+  add_index "chats", ["person_id"], name: "index_chats_on_person_id"
+
+  create_table "chats_places", force: true do |t|
+    t.integer "chat_id"
+    t.integer "place_id"
+  end
+
+  add_index "chats_places", ["chat_id"], name: "index_chats_places_on_chat_id"
+  add_index "chats_places", ["place_id"], name: "index_chats_places_on_place_id"
+
+  create_table "invitations", force: true do |t|
+    t.integer  "chat_id"
+    t.integer  "person_id"
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "invitations", ["chat_id"], name: "index_invitations_on_chat_id"
+  add_index "invitations", ["person_id"], name: "index_invitations_on_person_id"
+
+  create_table "people", force: true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "places", force: true do |t|
+    t.string   "name"
+    t.string   "address"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "votes", force: true do |t|
+    t.integer  "chat_id"
+    t.integer  "person_id"
+    t.integer  "place_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["chat_id"], name: "index_votes_on_chat_id"
+  add_index "votes", ["person_id"], name: "index_votes_on_person_id"
+  add_index "votes", ["place_id"], name: "index_votes_on_place_id"
 
 end

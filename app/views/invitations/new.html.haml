@@ -1,0 +1,5 @@
+#invitation
+  %h1 Invite
+  = simple_form_for @person, url: :chat_invitation do |f|
+    = f.input :email, as: :string, label: false, placeholder: 'email'
+    = f.submit "invite"

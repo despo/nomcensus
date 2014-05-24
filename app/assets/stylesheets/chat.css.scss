@@ -2,13 +2,14 @@
 
 body {
   font-size: 22px;
-  font-family: 'The Girl Next Door', cursive;
   margin: 0 20px 0 0;
   min-height: 700px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 2.5em;
 }
 
 h1, h2 {
-  font-family: 'The Girl Next Door', cursive;
+  font-family: 'Satisfy', cursive;
 }
 
 ul {
@@ -19,7 +20,7 @@ a {
   color: #b13c6b;
 }
 
-#chat, #home {
+#chat, #home, #place {
   margin: 30px auto;
   max-width: 1060px;
   padding: 0 50px;
@@ -30,51 +31,56 @@ input[type=submit] {
   text-decoration: none;
   border: 1px solid #999;
   padding: 10px;
-  border-radius: 15px;
-  box-shadow: 0px 0px 3px #666666;
+  border-radius: 5px;
 
   &:hover {
     box-shadow: 0px 0px 3px #e5e5e5;
-}
-}
-
-input[type=submit] {
-
+  }
 }
 
 .chat {
   text-align: center;
 }
 
-#chat {
-  input[type=text] {
-    border-radius: 5px;
-    width: 75%;
-    font-size: 1.5em;
-    padding: 0.4em;
-    text-align: center;
+input[type=text] {
+  border-radius: 5px;
+  width: 100%;
+  font-size: 2em;
+  padding: 0.4em;
+  margin: 10px auto;
 }
+
+select, select option {
+  border-radius: 5px;
+  font-size: 2em;
+  padding: 0.4em;
+  margin: 10px auto;
 }
 
 h1 {
   color: #220207;
+  line-height: 45px;
+  text-align: center;
+
   small {
     display: inline-block;
     font-size: 0.4em;
-    text-align: left;
     margin: 0;
     color: #110104;
-}
+    text-shadow: 0px 1px 1px #666;
+    font-family: 'Open Sans', sans-serif;
+  }
 }
 
 #suggestions ul li {
   cursor: move;
+  line-height: 1.7em;
 
   small {
     display: block;
     margin-top: -10px;
     color: #666666;
-}
+  }
 }
 
 .panel {
@@ -86,9 +92,10 @@ h1 {
   font-shadow: 0px 0px 1px #333;
 
   .location {
-    margin: 20px;
-    font-size: 1.2em;
-}
+    font-family: 'Satisfy', cursive;
+    margin-bottom: 20px;
+    font-size: 2em;
+  }
 }
 
 #suggestions h2 small {
@@ -108,29 +115,32 @@ h1 {
 #map {
   display: block;
   margin: 0 auto;
+  height: 500px;
 }
 
 #team {
   h2 {
     margin-bottom: 0px;
-}
+  }
 
-ul {
-  padding-left: 0;
-  margin-top: 0px;
-  li {
-    display: inline;
-    padding-right: 0;
+  ul {
+    padding-left: 0;
+    margin-top: 0px;
+    line-height: 1.6em;
 
-    &:after {
-      content: ", ";
-}
+    li {
+      display: inline;
+      padding-right: 0;
 
-&:last-child:after {
-  content: "";
-}
-}
-}
+      &:after {
+        content: ", ";
+      }
+
+      &:last-child:after {
+        content: "";
+      }
+    }
+  }
 }
 
 .unconfirmed {
@@ -154,13 +164,13 @@ footer {
     &:hover {
       color: #666;
       text-shadow: 0 2px 2px #b13c6b;
-}
-}
+    }
+  }
 
-position: fixed;
-top: 10px;
-right: 0;
-width: 50px;
+  position: fixed;
+  top: 10px;
+  right: 0;
+  width: 50px;
 }
 
 .left-column, .right-column {
@@ -176,26 +186,51 @@ width: 50px;
   width: 50%;
 }
 
-
 .container {
   margin: 0;
 }
 
-footer {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
 .author {
   margin: 0px auto;
   width: 165px;
   line-height: 18px;
 }
 
+#invitation {
+  margin: 0 auto;
+  text-align: center;
+
+  input[type=text] {
+    text-align: left;
+    margin: 0 10px;
+    max-width: 80%;
+  }
+}
+
+#chat {
+  h1 {
+    font-size: 2.4em;
+    text-align: center;
+    small {
+      display: block;
+      font-size: 0.35em;
+      padding-left: 0;
+    }
+  }
+}
+
 @media only screen and (max-width: 64em) {
+  #invitation {
+
+    input[type=text] {
+      max-width: 70%;
+    }
+  }
+
   #chat {
     max-width: 100%;
     padding: 0 20px;
+
   }
 
   .right-column {
@@ -218,26 +253,146 @@ footer {
   }
 
   footer {
-  position: relative;
-  margin-top: 30px;
-  a {
+    position: relative;
+    margin-top: 30px;
+    a {
+    }
   }
-}
-body {
-  margin: 0 0 0;
+  body {
+    margin: 0 0 0;
+  }
+
+  #invitations {
+    ul {
+      font-size: 0.8em;
+
+      li[selected] {
+        &:after  {
+          margin-left: 30px;
+        }
+      }
+    }
   }
 }
 
 @media only screen and (max-width: 40em) {
+  #invitation {
+    input[type=text] {
+      max-width: 50%;
+    }
+  }
+
   #team, #suggestions {
     vertical-align: top;
     display: block;
     width: 100%
-}
+  }
 
-body {
-  margin: 0 0 0;
-  font-size: 1.2em;
+  body {
+    margin: 0 0 0;
+    font-size: 1.2em;
+  }
+
+  #invitations {
+    ul {
+      font-size: 0.85em;
+      small {
+        display: block;
+        line-height: 1.1em;
+        font-size: 0.8em;
+        padding-left: 30px;
+      }
+    }
   }
 }
+
+#place form {
+  margin: 0 auto;
+}
+
+li[selected=selected]  {
+  font-weight: bold;
+  text-shadow: 1px 1px 7px #999;
+}
+
+#suggestions ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li:before {
+    content: '\2013';
+    float: left;
+    margin: 0 0.5em;
+  }
+
+  li:hover {
+    text-shadow: 1px 1px 7px #999;
+  }
+}
+
+.current_user {
+  position: absolute;
+  right: 20px;
+}
+
+#invitations {
+
+  .chat {
+    margin-top: 150px;
+
+    .btn {
+      padding: 25px 50px;
+      background-color: #999;
+
+      &:hover{
+        box-shadow: -1px 2px 4px #b13;
+        color: #b13;
+        text-shadow: 0px 0px 1px #b13;
+      }
+    }
+  }
+
+  ul {
+    padding-left: 100px;
+    margin: left;
+    list-style-type: none;
+    padding: 0 30px;
+    margin: 0;
+
+    li:before {
+      content: '\2013';
+      float: left;
+      margin: 0 0.5em;
+    }
+  }
+
+
+  li[selected] {
+    text-shadow: none;
+
+    &:after  {
+      font-size: 0.7em;
+      box-shadow: 1px 1px 5px #888;
+      padding: 2px;
+      color: white;
+    }
+  }
+
+  li[selected=selected] {
+    &:after  {
+      content: "GOING";
+      background-color: #39ac68;
+    }
+  }
+
+  li[selected=rejected] {
+    &:after  {
+      background-color: #718ea1;
+      content: "NOT GOING";
+    }
+  }
+}
+
+
 

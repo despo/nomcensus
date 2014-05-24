@@ -1,50 +1,47 @@
-function refreshMap() {
-  address =  $('#suggestions ul li:first-child small').text() || $('#suggestions ul li:first-child ').text();
-  GMaps.geocode({
-    address: address,
-    callback: function(results, status) {
-      if (status == 'OK') {
+function attachSortable(address) {
+  $('#suggestions li:not(.suggestion)').on("click", function(){
+    process($(this).find('small').text());
 
-        map = new GMaps({
-          el: '#map',
-          lat: 51.5072,
-          lng: 0.1275
-        });
-
-        var latlng = results[0].geometry.location;
-        map.setCenter(latlng.lat(), latlng.lng());
-        map.addMarker({
-          lat: latlng.lat(),
-          lng: latlng.lng()
-        });
-      }
+    place = $(this).attr('data-place-slug');
+    chat = $(this).attr('data-chat-slug');
+    if (place == null) {
+      return;
     }
-  });
-  $('#prevelant-location .location').text($('#suggestions ul li:first-child .place').text());
 
-  return map;
+    var jqxhr = $.post( "/" + chat + "/places/" + place + "/vote", function() {
+    }).done(function(data) {
+      $('#suggestions ul').html(data);
+      attachSortable();
+      $('li[data-place-slug='+place+']').attr('selected', true);
+    })
+  });
 }
 
-
-$(window).resize(function() {
-  process();
-});
-
-
-function process() {
-  console.log("ASDSAD");
+function process(address) {
   $('#map').css('height', parseInt($(window).height()*0.75));
-  map = refreshMap();
+  map = refreshMap(address);
   google.maps.event.trigger(map, 'resize');
 };
 
-$('document').ready(function(){
-  process();
-
-  $('#suggestions ul').sortable().bind('sortupdate', function() {
-    process();
-  });
-
-  refreshMap();
+$(window).resize(function() {
+  var address = getAddress();
+  process(address);
 });
 
+function ready() {
+  $('#chat_date').pickadate();
+  $('#chat_time').pickatime();
+  $('#place_name, #place_address').on('keydown', function() {
+    process($(this).val());
+  });
+
+  address = $('#suggestions ul li:first-child small').text() || $('#suggestions ul li:first-child ').text().trim();
+  process(address);
+  attachSortable();
+}
+
+$('document').ready(function(){
+  ready();
+});
+
+$(document).on('page:load', ready);

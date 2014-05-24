@@ -1,49 +1,31 @@
-.toolbar
-  =link_to "http://github.com/despo", class: 'github', title: "Github" do
-    =fa_icon "github"
-  =link_to "/help", class: 'help', title: "Questions" do
-    =fa_icon "question-circle"
-  =link_to "http://github.com/despo", class: 'bugs', title: "Bugs" do
-    =fa_icon "bug"
-  =link_to "http://twitter.com/despo", class: 'author', title: "@despo" do
-    =fa_icon "twitter"
-
 .container
   .left-column
     #chat
       %h1
-        %span
-          =@chat.name
-          %small (#{DateTime.now.strftime("%a, %d/%m/%Y at %H:%M")})
+        =@chat.name
+        %small #{@chat.date.strftime("%a, %d/%m/%Y")} at #{@chat.time.strftime("%H:%M")}
 
       #suggestions
         %h2
-          Suggestions
-          %small (order by preference)
+          - if @chat.places.any?
+            Suggestions
+            %small (click to choose)
+          - else
+            No suggestions yet
         %ul
-          %li
-            .place Whitecross Market, Barbican
-          %li
-            .place Cay Tre
-            %small 301 Old Street, EC1V 9LA
-          %li
-            .place Nandos, Old Street
-          %li
-            .place Forge & Co
-            %small 154 Shoreditch High Street, E1 6HD
-          %li
-            =link_to "suggest a place", "#"
+          = render partial: 'chats/places', locals: { chat: @chat }
 
       #team
         %h2 Who is going?
         %ul
-          %li Despo
-          %li Akira
-          %li Ariana
-          %li.unconfirmed Stuart
-          %li.unconfirmed Marley
-          %li
-            =link_to "invite more people", "#"
+          - @chat.invitations.each do |invitation|
+            - if invitation.person.email.eql?(email)
+              %li{ selected: 'selected'}=invitation.person.email
+            - else
+              %li{ class: (!invitation.accepted ? "unconfirmed" : "")}= invitation.person.email
+          - if logged_in?
+            %li
+              =link_to "invite more people", new_chat_invitation_path(@chat)
   .right-column
     #prevelant-location
       .panel

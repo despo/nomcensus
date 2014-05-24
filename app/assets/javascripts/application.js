@@ -15,4 +15,8 @@
 //= require turbolinks
 //= require jquery.sortable.min
 //= require gmaps
+//= require pickadate/picker
+//= require pickadate/picker.date
+//= require pickadate/picker.time
+//= require maps
 //= require chat
