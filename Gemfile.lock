@@ -46,6 +46,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
+    font-awesome-rails (4.0.3.2)
+      railties (>= 3.2, < 5.0)
     haml (4.0.5)
       tilt
     haml-rails (0.5.3)
@@ -158,6 +160,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   coffee-rails (~> 4.0.0)
+  font-awesome-rails
   haml
   haml-rails
   jbuilder (~> 2.0)

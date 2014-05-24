@@ -1,13 +1,28 @@
+@import "font-awesome";
+
 body {
-  min-height: 300px;
   font-size: 22px;
+  font-family: 'The Girl Next Door', cursive;
+  margin: 0 20px 0 0;
+  min-height: 700px;
+}
+
+h1, h2 {
+  font-family: 'The Girl Next Door', cursive;
+}
+
+ul {
+  padding-left: 25px;
+}
+
+a {
+  color: #b13c6b;
 }
 
 #chat, #home {
-  margin: auto;
+  margin: 30px auto;
   max-width: 1060px;
-  min-height: 500px;
-  margin-top: 100px;
+  padding: 0 50px;
 }
 
 a.btn,
@@ -20,7 +35,7 @@ input[type=submit] {
 
   &:hover {
     box-shadow: 0px 0px 3px #e5e5e5;
-  }
+}
 }
 
 input[type=submit] {
@@ -32,19 +47,197 @@ input[type=submit] {
 }
 
 #chat {
-  text-align: center;
-}
-
-h1 {
-  font-family: 'Shadows Into Light', cursive;
-}
-
-#chat {
   input[type=text] {
     border-radius: 5px;
     width: 75%;
     font-size: 1.5em;
     padding: 0.4em;
     text-align: center;
+}
+}
+
+h1 {
+  color: #220207;
+  small {
+    display: inline-block;
+    font-size: 0.4em;
+    text-align: left;
+    margin: 0;
+    color: #110104;
+}
+}
+
+#suggestions ul li {
+  cursor: move;
+
+  small {
+    display: block;
+    margin-top: -10px;
+    color: #666666;
+}
+}
+
+.panel {
+  text-align: center;
+  padding: 20px 0px 40px;
+  background-color: #b13c6b;
+  box-shadow: 2px 2px 2px #999;
+  color: white;
+  font-shadow: 0px 0px 1px #333;
+
+  .location {
+    margin: 20px;
+    font-size: 1.2em;
+}
+}
+
+#suggestions h2 small {
+  font-size: 0.5em;
+  display: block;
+  position: absolute;
+  margin-top: -10px;
+  color: #999;
+}
+
+.btn.small {
+  font-size: 0.7em;
+  padding: 5px 10px;
+  margin: 0 auto;
+}
+
+#map {
+  display: block;
+  margin: 0 auto;
+}
+
+#team {
+  h2 {
+    margin-bottom: 0px;
+}
+
+ul {
+  padding-left: 0;
+  margin-top: 0px;
+  li {
+    display: inline;
+    padding-right: 0;
+
+    &:after {
+      content: ", ";
+}
+
+&:last-child:after {
+  content: "";
+}
+}
+}
+}
+
+.unconfirmed {
+  color: #94a7b8;
+}
+
+footer {
+  font-family: 'Shadows Into Light Two', cursive;
+  text-align: center;
+  font-weight: bold;
+  font-size: 0.8em;
+}
+
+.toolbar {
+  z-index: 999;
+  a {
+    text-decoration: none;
+    font-size: 1.4em;
+    color: #999;
+    text-shadow: 0 2px 2px #666;
+    &:hover {
+      color: #666;
+      text-shadow: 0 2px 2px #b13c6b;
+}
+}
+
+position: fixed;
+top: 10px;
+right: 0;
+width: 50px;
+}
+
+.left-column, .right-column {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.left-column {
+  width: 45%;
+}
+
+.right-column {
+  width: 50%;
+}
+
+
+.container {
+  margin: 0;
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.author {
+  margin: 0px auto;
+  width: 165px;
+  line-height: 18px;
+}
+
+@media only screen and (max-width: 64em) {
+  #chat {
+    max-width: 100%;
+    padding: 0 20px;
+  }
+
+  .right-column {
+    display: block;
+    width: 100%;
+  }
+
+  #team, #suggestions {
+    vertical-align: top;
+    display: inline-block;
+    width: 45%;
+  }
+
+  #suggestions {
+    margin-right: 50px;
+  }
+
+  .left-column {
+    width: 100%;
+  }
+
+  footer {
+  position: relative;
+  margin-top: 30px;
+  a {
   }
 }
+body {
+  margin: 0 0 0;
+  }
+}
+
+@media only screen and (max-width: 40em) {
+  #team, #suggestions {
+    vertical-align: top;
+    display: block;
+    width: 100%
+}
+
+body {
+  margin: 0 0 0;
+  font-size: 1.2em;
+  }
+}
+

@@ -13,7 +13,7 @@ gem 'spring',        group: :development
 gem 'haml-rails'
 gem 'haml'
 gem 'simple_form'
-
+gem 'font-awesome-rails'
 
 gem 'unicorn'
 
