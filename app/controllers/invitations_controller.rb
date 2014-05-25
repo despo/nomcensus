@@ -22,4 +22,20 @@ class InvitationsController < ApplicationController
     end
     redirect_to @chat
   end
+
+  def accept
+    @chat = Chat.find_by_slug(params[:chat_id])
+    @invitation = current_user.invitations.where(chat: @chat).first
+    @invitation.update_attribute(:accepted, true)
+
+    redirect_to @chat
+  end
+
+  def reject
+    @chat = Chat.find_by_slug(params[:chat_id])
+    @invitation = current_user.invitations.where(chat: @chat).first
+    @invitation.update_attribute(:accepted, false)
+
+    redirect_to @chat
+  end
 end

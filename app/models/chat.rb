@@ -5,6 +5,8 @@ class Chat < ActiveRecord::Base
   belongs_to :person
   has_many :votes
 
+  validate :name, :time, :date, presence: true
+
   accepts_nested_attributes_for :person
 
   def to_param

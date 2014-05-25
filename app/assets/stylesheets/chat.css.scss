@@ -394,5 +394,31 @@ li[selected=selected]  {
   }
 }
 
+#attending {
+  text-align: center;
+  a {
+    color: #333;
+    font-weight: bold;
+    text-decoration: none;
+    border: 1px solid #b13c6b;
+    background-color: #b13c6b;
+    box-shadow: 1px 1px 1px #b13c6b;
+    padding: 10px 30px;
 
+    &:hover {
+      background-color: #b13c6b;
+      box-shadow: 2px 1px 5px #b13c6b;
+    }
+  }
 
+}
+
+.fa-check {
+  color: green;
+  text-shadow: 1px 1px 1px green;
+}
+
+.fa-times {
+  color: #f6004f;
+  text-shadow: 1px 1px 1px #f6004f;
+}

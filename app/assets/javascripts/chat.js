@@ -1,18 +1,18 @@
 function attachSortable(address) {
   $('#suggestions li:not(.suggestion)').on("click", function(){
-    process($(this).find('small').text());
-
     place = $(this).attr('data-place-slug');
     chat = $(this).attr('data-chat-slug');
     if (place == null) {
       return;
     }
-
+    process($(this).find('small').text());
     var jqxhr = $.post( "/" + chat + "/places/" + place + "/vote", function() {
     }).done(function(data) {
       $('#suggestions ul').html(data);
       attachSortable();
       $('li[data-place-slug='+place+']').attr('selected', true);
+
+    }).fail(function(){
     })
   });
 }
@@ -31,7 +31,7 @@ $(window).resize(function() {
 function ready() {
   $('#chat_date').pickadate();
   $('#chat_time').pickatime();
-  $('#place_name, #place_address').on('keydown', function() {
+  $('#place_name, #place_address').on('blur', function() {
     process($(this).val());
   });
 

@@ -11,7 +11,11 @@ class ChatsController < ApplicationController
   def create
     @chat = Chat.new(chat_params)
 
-    @chat.person = Person.where(chat_params[:person_attributes]).first_or_create
+    if logged_in?
+      @chat.person = current_user
+    else
+      @chat.person = Person.where(chat_params[:person_attributes]).first_or_create
+    end
 
     if @chat.save
       login(@chat.person.email)
@@ -24,6 +28,15 @@ class ChatsController < ApplicationController
 
   def show
     @chat = Chat.find_by_slug(params["id"])
+
+    if logged_in?
+      @invitation = current_user.invitations.where(chat: @chat).first
+    elsif params[:token]
+      @invitation = @chat.invitations.find_by_token(params[:token])
+      login(invitation.person.email)
+    end
+
+    redirect_to root_path unless @chat
   end
 
   private

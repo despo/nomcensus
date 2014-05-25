@@ -1,10 +1,11 @@
 .content#chat
   = simple_form_for @chat do |f|
-    = f.input :name, label: false, placeholder: "what is the chat about?"
-    = f.input :date, as: :string, label: false, placeholder: Date.tomorrow.strftime('%d %b, %Y')
-    = f.input :time, as: :string, label: false, placeholder: DateTime.new(2014,6,1,12,30).strftime("%H:%M %P")
-    = f.simple_fields_for :person do |pe|
-      = pe.input :email, as: :string, label: false, placeholder: "your email"
+    = f.input :name, label: false, placeholder: "what is the chat about?", required: true
+    = f.input :date, as: :string, label: false, placeholder: Date.tomorrow.strftime('%d %b, %Y'), required: true
+    = f.input :time, as: :string, label: false, placeholder: DateTime.new(2014,6,1,12,30).strftime("%H:%M %P"), required: true
+    - unless logged_in?
+      = f.simple_fields_for :person do |pe|
+        = pe.input :email, as: :string, label: false, placeholder: "your email", required: true
 
     = f.submit "Create"
 

@@ -1,20 +1,15 @@
 class SessionController < ApplicationController
-  def logout
+
+  def destroy
     logout!
     redirect_to root_path
   end
 
-  def new
-    @person = Person.new
-  end
-
   def create
-    login(params[:person_email] )
-
+    person = Person.find_by_token!(params[:token])
+    login(person.email)
     redirect_to root_path
-  end
-
-  def request_access
-    InvitationMailer.access_email(params[:person_email])
+  rescue Exception => e
+    redirect_to new_access_path, notice: "Invalid token"
   end
 end

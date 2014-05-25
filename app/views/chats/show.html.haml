@@ -5,6 +5,15 @@
         =@chat.name
         %small #{@chat.date.strftime("%a, %d/%m/%Y")} at #{@chat.time.strftime("%H:%M")}
 
+      - if @invitation
+        #attending
+          - if @invitation.accepted
+            = link_to reject_chat_invitation_path(@chat), class: 'attending' do
+              I'm going
+          - else
+            = link_to accept_chat_invitation_path(@chat), class: 'not-attending' do
+              I'm not going
+
       #suggestions
         %h2
           - if @chat.places.any?
@@ -20,9 +29,23 @@
         %ul
           - @chat.invitations.each do |invitation|
             - if invitation.person.email.eql?(email)
-              %li{ selected: 'selected'}=invitation.person.email
+              %li{ selected: 'selected'}
+                = invitation.person.email
+                - if invitation.accepted
+                  = fa_icon "check"
+                - elsif invitation.accepted.nil?
+                  = fa_icon "minus-circle"
+                - else
+                  = fa_icon "times"
             - else
-              %li{ class: (!invitation.accepted ? "unconfirmed" : "")}= invitation.person.email
+              %li{ class: (!invitation.accepted.nil? ?  " " : "unconfirmed")}
+                = invitation.person.email
+                - if invitation.accepted
+                  = fa_icon "check"
+                - elsif invitation.accepted.nil?
+                  = fa_icon "minus-circle"
+                - else
+                  = fa_icon "times"
           - if logged_in?
             %li
               =link_to "invite more people", new_chat_invitation_path(@chat)

@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
 
   def login(email)
     session[:person_email] = email
-    Person
   end
 
   def current_user

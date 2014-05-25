@@ -23,10 +23,12 @@ class PlacesController < ApplicationController
   end
 
   def vote
+    render json: "", status: :forbidden and return unless logged_in?
+
     @chat = Chat.find_by_slug(chat_id)
     @place = Place.find(place_id)
 
-    chatplace = Vote.where(chat: @chat, person: Person.first).first_or_create
+    chatplace = Vote.where(chat: @chat, person: current_user).first_or_create
     chatplace.update_attribute(:place_id, @place.id)
 
     render partial: 'chats/places', locals: { chat: @chat }

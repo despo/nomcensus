@@ -2,8 +2,9 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :places
 
-  get '/logout', to: "session#logout"
-  resources :session, only: [ :new, :create]
+  get '/logout', to: "session#destroy"
+  get '/login', to: "session#create"
+  resources :access, only: [ :new, :create]
   resources :people, only: [ :new, :index ]
 
   resources :invitations, only: [ :index ]
@@ -12,6 +13,9 @@ Rails.application.routes.draw do
     resources :places do
       post 'vote'
     end
-    resource :invitation
+    resource :invitation do
+      get 'accept'
+      get 'reject'
+    end
   end
 end
