@@ -5,14 +5,12 @@ function attachSortable(address) {
     if (place == null) {
       return;
     }
-    process($(this).find('small').text());
     var jqxhr = $.post( "/" + chat + "/places/" + place + "/vote", function() {
     }).done(function(data) {
       $('#suggestions ul').html(data);
       attachSortable();
       $('li[data-place-slug='+place+']').attr('selected', true);
-
-    }).fail(function(){
+      process($('ul li:first-child small').text());
     })
   });
 }
