@@ -18,6 +18,8 @@ gem 'pickadate-rails'
 
 gem 'unicorn'
 
+gem 'rails_12factor', group: :production
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'capybara'

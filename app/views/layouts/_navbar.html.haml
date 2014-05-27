@@ -1,17 +1,17 @@
 .toolbar
-  =link_to "http://github.com/despo", class: 'github', title: "Github" do
+  =link_to "https://github.com/despo/nomcensus", class: 'github', title: "Github" do
     =fa_icon "github"
   =link_to "/help", class: 'help', title: "Questions" do
     =fa_icon "question-circle"
-  =link_to "http://github.com/despo", class: 'bugs', title: "Bugs" do
+  =link_to "https://github.com/despo/nomcensus/issues/new", class: 'bugs', title: "Bugs" do
     =fa_icon "bug"
   =link_to "http://twitter.com/despo", class: 'author', title: "@despo" do
     =fa_icon "twitter"
   - if logged_in?
-    =link_to invitations_path, class: 'author', title: "logout #{email}" do
+    =link_to invitations_path, class: 'author', title: "Your Invitations" do
       =fa_icon "bars"
-    =link_to logout_path, class: 'author', title: "logout #{email}" do
+    =link_to logout_path, class: 'author', title: "Logout #{email}" do
       =fa_icon "sign-out"
   - else
-    =link_to new_access_path, class: 'author', title: "Sign in " do
+    =link_to new_access_path, class: 'author', title: "Login" do
       =fa_icon "sign-in"
