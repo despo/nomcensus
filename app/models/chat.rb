@@ -25,5 +25,14 @@ class Chat < ActiveRecord::Base
 
   def set_slug
     self.slug = self.name.parameterize
+
+    while Chat.exists?(slug: self.slug)
+      self.slug = self.name.parameterize
+      self.slug += "-#{random_words.sample}"
+    end
+  end
+
+  def random_words
+    [ "cuddle", "bear", "pug", "kitten", "twinkle", "apple-pie", "baloons", "breeze", "bubbly", "cuddle", "drizzle", "freckles", "glitter", "happy", "honey", "hugs", "jello", "rose", "puppy", "tickle", "yum", "nom", "yummy" ]
   end
 end
