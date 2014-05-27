@@ -33,7 +33,7 @@ class ChatsController < ApplicationController
       @invitation = current_user.invitations.where(chat: @chat).first
     elsif params[:token]
       @invitation = @chat.invitations.find_by_token(params[:token])
-      login(invitation.person.email)
+      login(@invitation.person.email)
     end
 
     redirect_to root_path unless @chat
