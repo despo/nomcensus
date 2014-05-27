@@ -1,5 +1,5 @@
 class InvitationMailer < ActionMailer::Base
-  default from: "despo@nomcensus.com"
+  default from: "Despo at nomcensus.com <despo@nomcensus.com>"
 
   def to_chat(invitation, chat)
     @invitation = invitation

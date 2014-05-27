@@ -1,13 +1,12 @@
 class AccessMailer < ActionMailer::Base
-  default from: "despo@nomcensus.com"
+  default from: "Despo at nomcensus.com <despo@nomcensus.com>"
 
-  def access_request(email, person)
-    @email = email
+  def access_request(person)
     @person = person
 
     @person.reset_token
     @person.save
 
-    mail(to: email, subject: "Access nomcensus.com")
+    mail(to: @person.email, subject: "Access nomcensus.com")
   end
 end
