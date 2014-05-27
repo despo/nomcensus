@@ -12,6 +12,6 @@
         =place.name
       %span.votes= votes_for(place)
     %small= place.address
-- if logged_in?
+- if can_access_chat?(@chat)
   %li.suggest
     =link_to "suggest a place", new_chat_place_path(@chat)

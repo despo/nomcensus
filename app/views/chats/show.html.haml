@@ -18,7 +18,8 @@
         %h2
           - if @chat.places.any?
             Suggestions
-            %small (click to choose)
+            - if can_access_chat?(@chat)
+              %small (click to vote)
           - else
             No suggestions yet
         %ul
@@ -39,14 +40,14 @@
                   = fa_icon "times"
             - else
               %li{ class: (!invitation.accepted.nil? ?  " " : "unconfirmed")}
-                = invitation.person.email
+                = invitation.person.with_privacy(!can_access_chat?(@chat))
                 - if invitation.accepted
                   = fa_icon "check"
                 - elsif invitation.accepted.nil?
                   = fa_icon "minus-circle"
                 - else
                   = fa_icon "times"
-          - if logged_in?
+          - if can_access_chat?(@chat)
             %li
               =link_to "invite more people", new_chat_invitation_path(@chat)
   .right-column

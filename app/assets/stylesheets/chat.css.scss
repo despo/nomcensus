@@ -98,12 +98,12 @@ h1 {
   }
 }
 
-#suggestions h2 small {
-  font-size: 0.5em;
-  display: block;
-  position: absolute;
-  margin-top: -10px;
-  color: #999;
+#suggestions h2 {
+  margin-bottom: 0.1em;
+  small {
+    font-size: 0.5em;
+    color: #999;
+  }
 }
 
 .btn.small {

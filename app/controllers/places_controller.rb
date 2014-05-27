@@ -23,9 +23,9 @@ class PlacesController < ApplicationController
   end
 
   def vote
-    render json: "", status: :forbidden and return unless logged_in?
-
     @chat = Chat.find_by_slug(chat_id)
+    render json: "", status: :forbidden and return unless logged_in? and can_access_chat?(@chat)
+
     @place = Place.find(place_id)
 
     chatplace = Vote.where(chat: @chat, person: current_user).first_or_create
@@ -46,4 +46,5 @@ class PlacesController < ApplicationController
   def place_id
     params[:place_id]
   end
+
 end

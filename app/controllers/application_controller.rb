@@ -27,5 +27,9 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
 
-  helper_method :email, :logged_in?
+  def can_access_chat?(chat)
+    logged_in? and current_user.invitations.exists?(chat: chat.id)
+  end
+
+  helper_method :email, :logged_in?, :can_access_chat?
 end
