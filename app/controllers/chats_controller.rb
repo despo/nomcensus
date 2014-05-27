@@ -29,14 +29,16 @@ class ChatsController < ApplicationController
   def show
     @chat = Chat.find_by_slug(params["id"])
 
+    redirect_to root_path unless @chat
+
     if logged_in?
       @invitation = current_user.invitations.where(chat: @chat).first
     elsif params[:token]
       @invitation = @chat.invitations.find_by_token(params[:token])
       login(@invitation.person.email)
     end
-
-    redirect_to root_path unless @chat
+  rescue
+    redirect_to root_path
   end
 
   private

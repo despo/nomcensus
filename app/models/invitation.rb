@@ -4,7 +4,7 @@ class Invitation < ActiveRecord::Base
 
   validates_uniqueness_of :person, scope: [ :chat ]
 
-  before_save :generate_token
+  before_create :generate_token
 
   private
 
