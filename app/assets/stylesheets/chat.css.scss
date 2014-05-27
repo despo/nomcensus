@@ -28,17 +28,20 @@ a {
 
 a.btn,
 input[type=submit] {
+  color: #fff;
   text-decoration: none;
-  border: 1px solid #999;
-  padding: 10px;
-  border-radius: 5px;
+  border: 1px solid #b13c6b;
+  background-color: #b13c6b;
+  box-shadow: 1px 1px 1px #b13c6b;
+  padding: 10px 30px;
 
   &:hover {
-    box-shadow: 0px 0px 3px #e5e5e5;
+    background-color: #b13c6b;
+    box-shadow: 2px 1px 5px #b13c6b;
   }
 }
 
-.chat {
+.chat, .demo {
   text-align: center;
 }
 
@@ -337,7 +340,9 @@ li[selected=selected]  {
 }
 
 #invitations {
-
+  .demo {
+    margin-top: 20px;
+  }
   .chat {
     margin-top: 150px;
 
@@ -410,7 +415,6 @@ li[selected=selected]  {
       box-shadow: 2px 1px 5px #b13c6b;
     }
   }
-
 }
 
 .fa-check {
@@ -421,4 +425,10 @@ li[selected=selected]  {
 .fa-times {
   color: #f6004f;
   text-shadow: 1px 1px 1px #f6004f;
+}
+
+img.demo {
+  width: 80%;
+  margin: 10px;
+  box-shadow: 1px 1px 1px 1px #999;
 }

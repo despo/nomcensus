@@ -1,5 +1,15 @@
 #invitations
   .container
-    .chat
-      =link_to new_chat_path do
-        New invitation
+    .left-column
+      .panel
+        %h1 Nomcensus
+        %p
+          Lunch choice made easy
+        %br
+      .demo
+        =link_to new_chat_path, class: 'btn' do
+          New nomcensus
+    .right-column
+      .demo
+        = image_tag "nomcensus.jpg", class: "demo"
+        = image_tag "nomcensus-loggedout.jpg", class: "demo"
