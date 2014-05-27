@@ -17,7 +17,7 @@ class InvitationsController < ApplicationController
       invitation = Invitation.new(chat: @chat, person: invitee)
 
       if invitation.save
-        InvitationMailer.to_chat(invitation, @chat).deliver
+        InvitationMailer.to_chat(invitation, @chat, current_user.email).deliver
       end
     end
     redirect_to @chat
