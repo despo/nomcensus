@@ -7,5 +7,4 @@ class InvitationMailer < ActionMailer::Base
 
     mail(to: @invitation.person.email, subject: @chat.name)
   end
-
 end

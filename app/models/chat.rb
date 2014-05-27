@@ -14,7 +14,7 @@ class Chat < ActiveRecord::Base
   end
 
   def ordered_places
-    self.votes.group(:place_id).select("id, place_id, COUNT(*) as count").map(&:place)
+    self.votes.group(:place_id).select("place_id, COUNT(*) as count").map(&:place)
   end
 
   def votes_for_place(place)

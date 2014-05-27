@@ -14,16 +14,15 @@ gem 'haml'
 gem 'simple_form'
 gem 'font-awesome-rails'
 gem 'pickadate-rails'
+gem 'pg'
 
 gem 'unicorn'
 
 group :production do
   gem 'rails_12factor'
-  gem 'pg'
 end
 
 group :test, :development do
-  gem 'sqlite3'
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'

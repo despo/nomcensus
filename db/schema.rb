@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20140526225112) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "chats", force: true do |t|
     t.string   "name"
     t.string   "slug"
@@ -23,15 +26,15 @@ ActiveRecord::Schema.define(version: 20140526225112) do
     t.datetime "time"
   end
 
-  add_index "chats", ["person_id"], name: "index_chats_on_person_id"
+  add_index "chats", ["person_id"], name: "index_chats_on_person_id", using: :btree
 
   create_table "chats_places", force: true do |t|
     t.integer "chat_id"
     t.integer "place_id"
   end
 
-  add_index "chats_places", ["chat_id"], name: "index_chats_places_on_chat_id"
-  add_index "chats_places", ["place_id"], name: "index_chats_places_on_place_id"
+  add_index "chats_places", ["chat_id"], name: "index_chats_places_on_chat_id", using: :btree
+  add_index "chats_places", ["place_id"], name: "index_chats_places_on_place_id", using: :btree
 
   create_table "invitations", force: true do |t|
     t.integer  "chat_id"
@@ -42,8 +45,8 @@ ActiveRecord::Schema.define(version: 20140526225112) do
     t.string   "token"
   end
 
-  add_index "invitations", ["chat_id"], name: "index_invitations_on_chat_id"
-  add_index "invitations", ["person_id"], name: "index_invitations_on_person_id"
+  add_index "invitations", ["chat_id"], name: "index_invitations_on_chat_id", using: :btree
+  add_index "invitations", ["person_id"], name: "index_invitations_on_person_id", using: :btree
 
   create_table "people", force: true do |t|
     t.string   "name"
@@ -69,8 +72,8 @@ ActiveRecord::Schema.define(version: 20140526225112) do
     t.datetime "updated_at"
   end
 
-  add_index "votes", ["chat_id"], name: "index_votes_on_chat_id"
-  add_index "votes", ["person_id"], name: "index_votes_on_person_id"
-  add_index "votes", ["place_id"], name: "index_votes_on_place_id"
+  add_index "votes", ["chat_id"], name: "index_votes_on_chat_id", using: :btree
+  add_index "votes", ["person_id"], name: "index_votes_on_person_id", using: :btree
+  add_index "votes", ["place_id"], name: "index_votes_on_place_id", using: :btree
 
 end
