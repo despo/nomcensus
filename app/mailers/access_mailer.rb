@@ -1,5 +1,5 @@
 class AccessMailer < ActionMailer::Base
-  default from: "despo.pentara@gmail.com"
+  default from: "despo@nomcensus.com"
 
   def access_request(email, person)
     @email = email
@@ -8,6 +8,6 @@ class AccessMailer < ActionMailer::Base
     @person.reset_token
     @person.save
 
-    mail(to: email, subject: "Access chatandlun.ch")
+    mail(to: email, subject: "Access nomcensus.com")
   end
 end
